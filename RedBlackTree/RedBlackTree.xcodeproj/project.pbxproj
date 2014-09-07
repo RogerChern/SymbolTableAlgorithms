@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		33038FB019BAF101004E89DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33038FAF19BAF101004E89DE /* main.cpp */; };
+		33038FB819BAF878004E89DE /* RedBlackTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33038FB719BAF878004E89DE /* RedBlackTree.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		33038FAC19BAF101004E89DE /* RedBlackTree */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RedBlackTree; sourceTree = BUILT_PRODUCTS_DIR; };
 		33038FAF19BAF101004E89DE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		33038FB619BAF211004E89DE /* RedBlackTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedBlackTree.h; sourceTree = "<group>"; };
+		33038FB719BAF878004E89DE /* RedBlackTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RedBlackTree.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				33038FAF19BAF101004E89DE /* main.cpp */,
+				33038FB619BAF211004E89DE /* RedBlackTree.h */,
+				33038FB719BAF878004E89DE /* RedBlackTree.cpp */,
 			);
 			path = RedBlackTree;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33038FB019BAF101004E89DE /* main.cpp in Sources */,
+				33038FB819BAF878004E89DE /* RedBlackTree.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +208,8 @@
 		33038FB419BAF101004E89DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -209,6 +217,8 @@
 		33038FB519BAF101004E89DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -232,6 +242,7 @@
 				33038FB519BAF101004E89DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
