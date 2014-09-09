@@ -8,37 +8,7 @@
 
 #include "RedBlackTree.h"
 
-class RedBlackTree::Node{
-private:
-    using keyType    = int;
-    using valueType  = int;
-    using pNode      = unique_ptr<Node>;
-    using Color      = bool;
-
-public:
-    keyType           key_;
-    valueType         value_;
-    pNode             left_, right_;
-    Color             color_;
-    int               N_;
-    
-public:
-    Node(keyType key, valueType value, int N, Color color):
-    key_(key),
-    value_(value),
-    color_(color),
-    N_(N)
-    {
-        
-    }
-    
-    bool isRed() const
-    {
-        return color_ == RED;
-    }
-};
-
-bool RedBlackTree::isRed(const pNode &x)
+inline bool RedBlackTree::isRed(const pNode &x)
 {
     if(x == nullptr)
     {
@@ -50,12 +20,18 @@ bool RedBlackTree::isRed(const pNode &x)
     }
 }
 
-auto RedBlackTree::set(pNode n, int key, int value) ->pNode
+void RedBlackTree::set(string key, int value)
+{
+    root = set(std::move(root), key, value);
+    root->color_ = BLACK;
+}
+
+auto RedBlackTree::set(pNode n, string key, int value) ->pNode
 {
     if(n == nullptr)
     {
-        //if you change 'false' with 'BLACK', the linker will failed
-        return make_unique<Node>(key, value, 1, false);
+        //if change 'true' with 'RED', the linker will failed
+        return make_unique<Node>(key, value, 1, true);
     }
     
     if(key < n->key_)
@@ -83,31 +59,50 @@ auto RedBlackTree::set(pNode n, int key, int value) ->pNode
     {
         flipColor(n);
     }
-    n->N_ = size(n->left_) + size(n->right_);
+    n->N_ = size(n->left_) + size(n->right_) + 1;
     
     return n;
 }
 
+int& RedBlackTree::get(const string &key)
+{
+    return get(root, key);
+}
+
+int& RedBlackTree::get(const pNode &n, const string &key)
+{
+    if(key < n->key_)
+    {
+        get(n->left_, key);
+    }
+    else if(key > n->key_)
+    {
+        get(n->right_, key);
+    }
+    
+    return n->value_;
+}
+
 auto RedBlackTree::rotateLeft(pNode n) ->pNode
 {
-    pNode x            = std::move(n->left_);
-    n->left_           = std::move(x->right_);
-    x->right_          = std::move(n);
+    pNode x            = std::move(n->right_);
+    n->right_          = std::move(x->left_);
+    x->left_           = std::move(n);
     x->color_          = x->left_->color_;
     x->left_->color_   = RED;
-    x->N_              = n->N_;
+    x->N_              = x->left_->N_;
     x->left_->N_       = size(x->left_->left_) + size(x->left_->right_) + 1;
     return x;
 }
 
 auto RedBlackTree::rotateRight(pNode n) ->pNode
 {
-    pNode x            = std::move(n->right_);
-    n->right_          = std::move(x->left_);
-    x->left_           = std::move(n);
+    pNode x            = std::move(n->left_);
+    n->left_           = std::move(x->right_);
+    x->right_          = std::move(n);
     x->color_          = x->left_->color_;
     x->right_->color_  = RED;
-    x->N_              = n->N_;
+    x->N_              = x->right_->N_;
     x->right_->N_      = size(x->right_->left_) + size(x->right_->right_) + 1;
     return x;
 }
@@ -121,6 +116,11 @@ void RedBlackTree::flipColor(pNode &n)
 
 int RedBlackTree::size(const pNode &n)
 {
+    if(n == nullptr)
+    {
+        return 0;
+    }
+    
     return n->N_;
 }
 
