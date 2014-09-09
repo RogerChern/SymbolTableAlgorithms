@@ -10,19 +10,25 @@
 #include <iostream>
 #include <string>
 #include "RedBlackTree.h"
+#include "RedBlackTreeTemplate.h"
+
 using namespace std;
 
 int main(int argc, const char * argv[]) {
     
     fstream fin("/Users/rogerchen/Desktop/data/tinyTale.txt");
     RedBlackTree rbt;
+    RedBlackTreeTemplate<string, int> rbtt;
     
     string temp;
     while(fin >> temp)
     {
         rbt.set(temp, 1);
+        rbtt.set(temp, 1);
     }
     
-    cout << "hello";
+    cout << rbtt.get("it") << endl;
+    cout << rbtt.size() << endl;
+    
     return 0;
 }
