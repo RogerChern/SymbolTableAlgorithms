@@ -149,11 +149,11 @@ private:
     {
         if(key < n->key_)
         {
-            get(n->left_, key);
+            return get(n->left_, key);
         }
         else if(key > n->key_)
         {
-            get(n->right_, key);
+            return get(n->right_, key);
         }
         
         return n->value_;

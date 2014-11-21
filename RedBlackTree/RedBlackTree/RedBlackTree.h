@@ -45,6 +45,8 @@ private:
         }
     };
     using pNode = unique_ptr<Node>;
+    //inline static const integer initialization creates a scoped integer constant
+    //which you can't take the address of
     static const bool RED   = true;
     static const bool BLACK = false;
 
@@ -66,6 +68,7 @@ private:
 public:
     void   set(string key, int value);
     int&   get(const string &key);
+    int    size();
     
 };
 

@@ -30,8 +30,8 @@ auto RedBlackTree::set(pNode n, string key, int value) ->pNode
 {
     if(n == nullptr)
     {
-        //if change 'true' with 'RED', the linker will failed
-        return make_unique<Node>(key, value, 1, true);
+        //if change '+RED' with 'RED', the linker will failed
+        return make_unique<Node>(key, value, 1, +RED);
     }
     
     if(key < n->key_)
@@ -73,11 +73,11 @@ int& RedBlackTree::get(const pNode &n, const string &key)
 {
     if(key < n->key_)
     {
-        get(n->left_, key);
+        return get(n->left_, key);
     }
     else if(key > n->key_)
     {
-        get(n->right_, key);
+        return get(n->right_, key);
     }
     
     return n->value_;
@@ -124,3 +124,7 @@ int RedBlackTree::size(const pNode &n)
     return n->N_;
 }
 
+int RedBlackTree::size()
+{
+    return this->size(root);
+}

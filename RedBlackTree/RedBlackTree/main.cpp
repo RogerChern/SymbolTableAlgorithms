@@ -21,14 +21,17 @@ int main(int argc, const char * argv[]) {
     RedBlackTreeTemplate<string, int> rbtt;
     
     string temp;
+    int    counter = 0;
     while(fin >> temp)
     {
-        rbt.set(temp, 1);
-        rbtt.set(temp, 1);
+        rbt.set(temp, ++counter);
+        rbtt.set(temp, counter);
     }
     
-    cout << rbtt.get("it") << endl;
+    cout << rbt.size() << endl;
+    cout << rbt.get("foolishness") << endl;
     cout << rbtt.size() << endl;
+    cout << rbtt.get("it") << endl;
     
     return 0;
 }
