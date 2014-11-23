@@ -1,5 +1,5 @@
 rbt: main.o RedBlackTree.o
-	clang++ main.o RedBlackTree.o -o rbt
+	clang++ main.o RedBlackTree.o -o rbt.out
 
 RedBlackTree.o: RedBlackTree.cpp
 	clang++ -c RedBlackTree.cpp -std=c++1y -stdlib=libc++
