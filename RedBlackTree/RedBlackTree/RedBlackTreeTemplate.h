@@ -13,6 +13,7 @@
 #include <string>
 using namespace std;
 
+//Key should equip the concept Comparable
 template<typename Key, typename Value>
 class RedBlackTreeTemplate{
 private:
@@ -25,8 +26,11 @@ private:
         
     public:
         keyType           key_;
+        //CLRS suggests the valueType should be wrapped by a layer of pointer
+        //valueTpye*      value_;
         valueType         value_;
-        pNode             left_, right_;
+        pNode             left_;
+        pNode             right_;
         Color             color_;
         int               N_;
         
@@ -46,8 +50,8 @@ private:
         }
     };
     using pNode = unique_ptr<Node>;
-    static const bool RED   = true;
-    static const bool BLACK = false;
+    static constexpr bool RED   = true;
+    static constexpr bool BLACK = false;
 
 private:
     pNode root;

@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <ctime>
 #include "RedBlackTree.h"
 #include "RedBlackTreeTemplate.h"
 
@@ -16,22 +17,24 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     
-    fstream fin("/Users/rogerchen/Desktop/data/tinyTale.txt");
-    RedBlackTree rbt;
-    RedBlackTreeTemplate<string, int> rbtt;
+    fstream fin("/Users/rogerchen/Desktop/data/largeT.txt");
+    //RedBlackTree rbt;
+    RedBlackTreeTemplate<int, int> rbtt;
     
-    string temp;
-    int    counter = 0;
+    auto beg = clock();
+
+    int temp;
     while(fin >> temp)
     {
-        rbt.set(temp, ++counter);
-        rbtt.set(temp, counter);
+        rbtt.set(temp, temp);
     }
-    
-    cout << rbt.size() << endl;
-    cout << rbt.get("foolishness") << endl;
+    auto end = clock();
+
+    cout << double(end - beg) / CLOCKS_PER_SEC * 1000 << " ms" << endl;
+
+
     cout << rbtt.size() << endl;
-    cout << rbtt.get("it") << endl;
+    cout << rbtt.get(333) << endl;
     
     return 0;
 }
